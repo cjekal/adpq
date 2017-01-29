@@ -1,21 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Requires Ruby 2.3
 
-Things you may want to cover:
+* Requires Perl, Docker and Docker-Compose
 
-* Ruby version
+* Configuration is mostly handled via environment variables (.env file)
 
-* System dependencies
+* Database creation is handled via `./dc ws_bash` on the host followed by `rails db:create` in the container
 
-* Configuration
+* Database initialization is handled via `./dc ws_bash` on the host followed by `rails db:migrate` in the container
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
+* Test suite is run via `./dc ws_bash` on the host followed by `rails test` in the container
 
 * Services (job queues, cache servers, search engines, etc.)
 
