@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+
+if (@ARGV[0] =~ /^up$/i)          { exec("docker-compose build && docker-compose up -d") }
+elsif (@ARGV[0] =~ /^build$/i)    { exec("docker-compose build") }
+elsif (@ARGV[0] =~ /^down$/i)     { exec("docker-compose down") }
+elsif (@ARGV[0] =~ /^ws_bash$/i)  { exec("docker-compose exec website /bin/bash") }
+elsif (@ARGV[0] =~ /^sk_bash$/i)  { exec("docker-compose exec sidekiq /bin/bash") }
+elsif (@ARGV[0] =~ /^rd_bash$/i)  { exec("docker-compose exec redis /bin/bash") }
+elsif (@ARGV[0] =~ /^ac_bash$/i)  { exec("docker-compose exec cable /bin/bash") }
+elsif (@ARGV[0] =~ /^pg_bash$/i)  { exec("docker-compose exec postgres /bin/bash") }
+elsif (@ARGV[0] =~ /^ps$/i)       { exec("docker-compose ps") }
+else                              { print "allowed commands are up, build, down, ws_bash, sk_bash, rd_bash, ac_bash, pg_bash\n" }

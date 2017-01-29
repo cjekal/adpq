@@ -1,4 +1,4 @@
-FROM ruby:2.4
+FROM ruby:2.3-slim
 # Docker images can start off with nothing, but it's extremely
 # common to pull in from a base image. In our case we're pulling
 # in from the slim version of the official Ruby 2.3 image.
@@ -89,7 +89,7 @@ RUN bundle exec rake RAILS_ENV=production DATABASE_URL=postgresql://user:pass@12
 # app instances, you may want to remove this step and deal with asset
 # compilation at a different stage of your deployment.
 
-VOLUME ["$INSTALL_PATH"]
+VOLUME ["$INSTALL_PATH/public"]
 # In production you will very likely reverse proxy Rails with nginx.
 # This sets up a volume so that nginx can read in the assets from
 # the Rails Docker image without having to copy them to the Docker host.
