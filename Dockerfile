@@ -81,7 +81,7 @@ COPY . .
 # this is how the unix command cp (copy) works. It stands for the
 # current directory.
 
-# RUN bundle exec rake RAILS_ENV=production DATABASE_URL=mysql://root:my_password@127.0.0.1:3306/db_name ACTION_CABLE_ALLOWED_REQUEST_ORIGINS=foo,bar SECRET_TOKEN=dummytoken assets:precompile
+RUN bundle exec rake RAILS_ENV=production DATABASE_URL=mysql2://root:my_password@127.0.0.1:3306/db_name ACTION_CABLE_ALLOWED_REQUEST_ORIGINS=foo,bar SECRET_TOKEN=dummytoken assets:precompile
 # Provide a dummy DATABASE_URL and more to Rails so it can pre-compile
 # assets. The values do not need to be real, just valid syntax.
 #
