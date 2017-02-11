@@ -14,7 +14,7 @@ services:
     ports:
       - '6379:6379'
     volumes:
-      - 'redis:/var/lib/redis/data'
+      - 'redis:/var/lib/redis/data:z'
 
   website:
     depends_on:
@@ -24,7 +24,7 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - '.:/my_dockerized_app'
+      - '.:/my_dockerized_app:z'
     env_file:
       - '.env'
 
@@ -35,7 +35,7 @@ services:
     build: .
     command: sidekiq -C config/sidekiq.yml.erb
     volumes:
-      - '.:/my_dockerized_app'
+      - '.:/my_dockerized_app:z'
     env_file:
       - '.env'
 
@@ -47,7 +47,7 @@ services:
     ports:
       - '28080:28080'
     volumes:
-      - '.:/my_dockerized_app'
+      - '.:/my_dockerized_app:z'
     env_file:
       - '.env'
 
