@@ -46,8 +46,8 @@ gem 'bootstrap-sass', '~> 3.3'
 gem 'font-awesome-rails', '~> 4.7'
 
 group :development, :test do
-  # Call 'byebug' anywhere in your code to drop into a debugger console
-  gem 'byebug', platform: :mri
+  # Call 'binding.pry' anywhere in your code to drop into a debugger console
+  gem 'pry-nav', '~> 0.2.4'
 end
 
 group :development do
