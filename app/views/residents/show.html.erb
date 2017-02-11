@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @resident.email %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @resident.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @resident.last_name %>
+</p>
+
+<p>
+  <strong>Zip code:</strong>
+  <%= @resident.zip_code %>
+</p>
+
+<p>
+  <strong>Last known zip code:</strong>
+  <%= @resident.last_known_zip_code %>
+</p>
+
+<%= link_to 'Edit', edit_resident_path(@resident) %> |
+<%= link_to 'Back', residents_path %>
