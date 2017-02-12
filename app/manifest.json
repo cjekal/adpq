@@ -1,0 +1,12 @@
+{
+  "name": "My Dockerized App",
+  "short_name": "my-dockerized-app",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/images/my-push-logo-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

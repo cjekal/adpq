@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   root 'events#index'
 
   resources :events, only: [:index, :show] do
-    get 'notify', on: :member
+    member do
+      get 'ws_notify'
+      get 'wp_notify'
+    end
   end
 
   resources :residents do

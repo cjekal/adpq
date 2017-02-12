@@ -45,6 +45,9 @@ gem 'bootstrap-sass', '~> 3.3'
 # Use Font Awesome Rails for Font Awesome icons
 gem 'font-awesome-rails', '~> 4.7'
 
+# For Web Push Notification. See: https://rossta.net/blog/using-the-web-push-api-with-vapid.html
+gem 'webpush', '~> 0.3.1'
+
 group :development, :test do
   # Call 'binding.pry' anywhere in your code to drop into a debugger console
   gem 'pry-nav', '~> 0.2.4'
