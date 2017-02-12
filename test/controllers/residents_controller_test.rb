@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ResidentsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @resident = residents(:one)
+    @resident = residents(:valid)
   end
 
   test "should get index" do
@@ -17,7 +17,7 @@ class ResidentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create resident" do
     assert_difference('Resident.count') do
-      post residents_url, params: { resident: { email: @resident.email, first_name: @resident.first_name, last_known_zip_code: @resident.last_known_zip_code, last_name: @resident.last_name, zip_code: @resident.zip_code } }
+      post residents_url, params: { resident: { email: 'test@email.com', zip_code: @resident.zip_code } }
     end
 
     assert_redirected_to resident_url(Resident.last)
@@ -34,7 +34,7 @@ class ResidentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update resident" do
-    patch resident_url(@resident), params: { resident: { email: @resident.email, first_name: @resident.first_name, last_known_zip_code: @resident.last_known_zip_code, last_name: @resident.last_name, zip_code: @resident.zip_code } }
+    patch resident_url(@resident), params: { resident: { email: @resident.email, zip_code: @resident.zip_code } }
     assert_redirected_to resident_url(@resident)
   end
 
