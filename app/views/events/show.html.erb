@@ -20,4 +20,5 @@
   <%= @event.additional_info_url %>
 </p>
 
-<%= link_to 'Back', events_path %>
+<%= link_to 'Back', events_path %> |
+<%= link_to 'Notify', notify_event_path(@event) %>
