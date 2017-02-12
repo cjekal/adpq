@@ -48,6 +48,9 @@ gem 'font-awesome-rails', '~> 4.7'
 # For Web Push Notification. See: https://rossta.net/blog/using-the-web-push-api-with-vapid.html
 gem 'webpush', '~> 0.3.1'
 
+# For Web Push Notification. The serviceworker part. See: https://rossta.net/blog/service-worker-on-rails.html
+gem 'serviceworker-rails', '~> 0.5.4'
+
 group :development, :test do
   # Call 'binding.pry' anywhere in your code to drop into a debugger console
   gem 'pry-nav', '~> 0.2.4'
