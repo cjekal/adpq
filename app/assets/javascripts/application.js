@@ -31,3 +31,4 @@
 //= require bootstrap/tab
 //= require bootstrap/transition
 //= require_tree .
+//= require serviceworker-companion
