@@ -1,5 +1,5 @@
 class ResidentsController < ApplicationController
-  before_action :set_resident, only: [:show, :edit, :update, :destroy]
+  before_action :set_resident, only: [:show, :edit, :update, :destroy, :sign_in]
 
   # GET /residents
   # GET /residents.json
@@ -59,6 +59,11 @@ class ResidentsController < ApplicationController
       format.html { redirect_to residents_url, notice: 'Resident was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def sign_in
+    session[:user_id] = @resident.id
+    redirect_to @resident, notice: 'You have been logged in as this user'
   end
 
   private

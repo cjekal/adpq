@@ -28,6 +28,11 @@ class ResidentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should sign-in as resident" do
+    get sign_in_resident_url(@resident)
+    assert_redirected_to resident_url(@resident)
+  end
+
   test "should get edit" do
     get edit_resident_url(@resident)
     assert_response :success
