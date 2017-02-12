@@ -34,7 +34,7 @@ class EventsController < ApplicationController
     end
     # end hack
     Webpush.payload_send(
-      message: "Category: #{@event.category}, Zip: #{@event.zip_code}, URL: #{@event.additional_info_url}"
+      message: "Category: #{@event.category}, Zip: #{@event.zip_code}, URL: #{@event.additional_info_url}",
       endpoint: @resident.subscription_endpoint,
       p256dh: @resident.subscription_keys_p256dh,
       auth: @resident.subscription_keys_auth,
