@@ -62,8 +62,9 @@ class ResidentsController < ApplicationController
   end
 
   def sign_in
-    session[:user_id] = @resident.id
-    redirect_to @resident, notice: 'You have been logged in as this user'
+    session[:resident_id] = @resident.id
+
+    redirect_to @resident, notice: 'You have been logged in as this resident'
   end
 
   private
