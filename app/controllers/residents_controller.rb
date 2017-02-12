@@ -62,7 +62,7 @@ class ResidentsController < ApplicationController
   end
 
   def sign_in
-    session[:resident_id] = @resident.id
+    cookies.signed[:resident_id] = @resident.id
 
     redirect_to @resident, notice: 'You have been logged in as this resident'
   end
