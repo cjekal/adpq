@@ -9,7 +9,7 @@
       <th>Unique identifier</th>
       <th>Zip code</th>
       <th>Additional info url</th>
-      <th></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -21,6 +21,7 @@
         <td><%= event.zip_code %></td>
         <td><%= event.additional_info_url %></td>
         <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Notify', notify_event_path(event) %></td>
       </tr>
     <% end %>
   </tbody>
