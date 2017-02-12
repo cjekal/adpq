@@ -12,6 +12,7 @@ App.notification = App.cable.subscriptions.create("NotificationChannel", {
   received: function(data) {
     // Called when there's incoming data on the websocket for this channel
     console.log('received from NotificationChannel');
-    console.log(data);
+    var $div = $('<div />').appendTo('#notifications');
+    $div.text('Category: ' + data.event.category + ', Zip: ' + data.event.zip_code + ', URL: ' + data.event.additional_info_url);
   }
 });

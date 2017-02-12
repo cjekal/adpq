@@ -10,7 +10,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    NotificationChannel.broadcast_to(Resident.find(session[:resident_id]), title: 'from ny!', event: @event)
+    NotificationChannel.broadcast_to(Resident.find(session[:resident_id]), event: @event)
   end
 
   private
