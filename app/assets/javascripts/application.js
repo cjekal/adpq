@@ -45,3 +45,20 @@ if (navigator.serviceWorker) {
 else {
   console.error('Service worker is not supported in this browser');
 }
+
+navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
+  serviceWorkerRegistration.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: window.vapidPublicKey
+  });
+});
+
+$('.webpush-button').on('click', (e) => {
+  navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
+    serviceWorkerRegistration.pushManager.getSubscription().then((subscription) => {
+      $.post('/subscriptions/push', {
+        subscription: subscription.toJSON()
+      });
+    });
+  });
+});

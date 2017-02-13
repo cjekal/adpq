@@ -10,6 +10,12 @@
   <%= action_cable_meta_tag %>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <!-- include this tag first so that the code in application.js has access to the vapidPublicKey -->
+  <%= javascript_tag do %>
+    window.vapidPublicKey = new Uint8Array(<%= Base64.urlsafe_decode64(ENV['VAPID_PUBLIC_KEY']).bytes %>);
+  <% end %>
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
   <%= csrf_meta_tags %>
