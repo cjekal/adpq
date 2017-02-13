@@ -51,6 +51,36 @@ class ResidentsController < ApplicationController
     end
   end
 
+  def subscribe
+    # @resident = Resident.find_by(id: cookies.signed[:resident_id])
+    # @resident.subscription_endpoint = resident_subscription_params[:endpoint]
+    # @resident.subscription_keys_p256dh = resident_subscription_params[:keys][:p256dh]
+    # @resident.subscription_keys_auth = resident_subscription_params[:keys][:auth]
+    #
+    # respond_to do |format|
+    #   if @resident.save
+    #     format.html { redirect_to @resident, notice: 'Resident subscription was successfully created.' }
+    #     format.json { render :show, status: :created, location: @resident }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @resident.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
+    Webpush.payload_send(
+    message: params[:message],
+    endpoint: params[:resident][:endpoint],
+    p256dh: params[:resident][:keys][:p256dh],
+    auth: params[:resident][:keys][:auth],
+    ttl: 24 * 60 * 60,
+    vapid: {
+      subject: 'mailto:sender@example.com',
+      public_key: ENV['VAPID_PUBLIC_KEY'],
+      private_key: ENV['VAPID_PRIVATE_KEY']
+    }
+  )
+  end
+
   # DELETE /residents/1
   # DELETE /residents/1.json
   def destroy
@@ -76,5 +106,9 @@ class ResidentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def resident_params
       params.require(:resident).permit(:email, :first_name, :last_name, :zip_code, :last_known_zip_code)
+    end
+
+    def resident_subscription_params
+      params.require(:resident).permit(:endpoint, keys: [:p256dh, :auth])
     end
 end

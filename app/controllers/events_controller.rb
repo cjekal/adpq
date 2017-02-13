@@ -21,18 +21,7 @@ class EventsController < ApplicationController
   end
 
   def wp_notify
-    # hacks! gotta get these values and store them!
-    @resident = Resident.first
-    def @resident.subscription_endpoint
-      ''
-    end
-    def @resident.subscription_keys_p256dh
-      ''
-    end
-    def @resident.subscription_keys_auth
-      ''
-    end
-    # end hack
+    @resident = Resident.find_by(id: cookies.signed[:resident_id])
     Webpush.payload_send(
       message: "Category: #{@event.category}, Zip: #{@event.zip_code}, URL: #{@event.additional_info_url}",
       endpoint: @resident.subscription_endpoint,

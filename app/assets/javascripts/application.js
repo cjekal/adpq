@@ -59,8 +59,8 @@ $(document).on('ready', function(e) {
 
     navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
       serviceWorkerRegistration.pushManager.getSubscription().then(function(subscription) {
-        $.post('/subscriptions/push', {
-          subscription: subscription.toJSON()
+        $.post('/residents/subscribe', {
+          resident: subscription.toJSON()
         });
       });
     });

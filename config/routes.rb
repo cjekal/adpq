@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 
   resources :residents do
     get 'sign_in', on: :member
+    post 'subscribe', on: :collection
   end
 end
