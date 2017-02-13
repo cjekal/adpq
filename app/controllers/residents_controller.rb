@@ -52,33 +52,20 @@ class ResidentsController < ApplicationController
   end
 
   def subscribe
-    # @resident = Resident.find_by(id: cookies.signed[:resident_id])
-    # @resident.subscription_endpoint = resident_subscription_params[:endpoint]
-    # @resident.subscription_keys_p256dh = resident_subscription_params[:keys][:p256dh]
-    # @resident.subscription_keys_auth = resident_subscription_params[:keys][:auth]
-    #
-    # respond_to do |format|
-    #   if @resident.save
-    #     format.html { redirect_to @resident, notice: 'Resident subscription was successfully created.' }
-    #     format.json { render :show, status: :created, location: @resident }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @resident.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    @resident = Resident.find_by(id: cookies.signed[:resident_id])
+    @resident.subscription_endpoint = resident_subscription_params[:endpoint]
+    @resident.subscription_keys_p256dh = resident_subscription_params[:keys][:p256dh]
+    @resident.subscription_keys_auth = resident_subscription_params[:keys][:auth]
 
-    Webpush.payload_send(
-    message: params[:message],
-    endpoint: params[:resident][:endpoint],
-    p256dh: params[:resident][:keys][:p256dh],
-    auth: params[:resident][:keys][:auth],
-    ttl: 24 * 60 * 60,
-    vapid: {
-      subject: 'mailto:sender@example.com',
-      public_key: ENV['VAPID_PUBLIC_KEY'],
-      private_key: ENV['VAPID_PRIVATE_KEY']
-    }
-  )
+    respond_to do |format|
+      if @resident.save
+        format.html { redirect_to @resident, notice: 'Resident subscription was successfully created.' }
+        format.json { render :show, status: :created, location: @resident }
+      else
+        format.html { render :new }
+        format.json { render json: @resident.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /residents/1
