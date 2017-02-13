@@ -51,6 +51,9 @@ gem 'webpush', '~> 0.3.1'
 # For Web Push Notification. The serviceworker part. See: https://rossta.net/blog/service-worker-on-rails.html
 gem 'serviceworker-rails', '~> 0.5.4'
 
+# For ESRI GeoServices. See: https://github.com/Esri/geoservices-ruby
+gem 'geoservices', '~> 0.1.0'
+
 group :development, :test do
   # Call 'binding.pry' anywhere in your code to drop into a debugger console
   gem 'pry-nav', '~> 0.2.4'
