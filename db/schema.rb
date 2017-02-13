@@ -10,15 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213020313) do
+ActiveRecord::Schema.define(version: 20170213165811) do
 
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "category",            null: false
-    t.string   "unique_identifier",   null: false
+    t.string   "category",                                      null: false
+    t.string   "unique_identifier",                             null: false
     t.string   "zip_code"
     t.string   "additional_info_url"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.string   "endpoint"
+    t.integer  "layer"
+    t.decimal  "latitude",            precision: 15, scale: 10
+    t.decimal  "longitude",           precision: 15, scale: 10
   end
 
   create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
