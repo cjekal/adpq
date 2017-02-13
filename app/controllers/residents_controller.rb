@@ -84,6 +84,23 @@ class ResidentsController < ApplicationController
     redirect_to @resident, notice: 'You have been logged in as this resident'
   end
 
+  def geolocation
+    puts params
+    @resident = Resident.find_by(id: cookies.signed[:resident_id])
+    @resident.latitude = resident_geolocation_params[:latitude]
+    @resident.longitude = resident_geolocation_params[:longitude]
+
+    respond_to do |format|
+      if @resident.save
+        format.html { redirect_to @resident, notice: 'Resident geolocation was successfully updated.' }
+        format.json { render :show, status: :geolocated, location: @resident }
+      else
+        format.html { render :new }
+        format.json { render json: @resident.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_resident
@@ -97,5 +114,9 @@ class ResidentsController < ApplicationController
 
     def resident_subscription_params
       params.require(:resident).permit(:endpoint, keys: [:p256dh, :auth])
+    end
+
+    def resident_geolocation_params
+      params.require(:resident).permit(:latitude, :longitude)
     end
 end

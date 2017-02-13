@@ -13,7 +13,8 @@ class EventsController < ApplicationController
   end
 
   def ws_notify
-    NotificationChannel.broadcast_to(Resident.find(session[:resident_id]), event: @event)
+    @resident = Resident.find_by(id: cookies.signed[:resident_id])
+    NotificationChannel.broadcast_to(@resident, event: @event)
     respond_to do |format|
       format.html { redirect_to @event, notice: 'Event has been WebSockets notified.' }
       format.json { render :show, status: :ws_notified, location: @event }

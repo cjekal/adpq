@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213165811) do
+ActiveRecord::Schema.define(version: 20170213204044) do
 
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "category",                                      null: false
@@ -35,16 +35,19 @@ ActiveRecord::Schema.define(version: 20170213165811) do
   end
 
   create_table "residents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email",                    null: false
+    t.string   "email",                                              null: false
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "zip_code",                 null: false
+    t.string   "zip_code",                                           null: false
     t.string   "last_known_zip_code"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
     t.string   "subscription_endpoint"
     t.string   "subscription_keys_p256dh"
     t.string   "subscription_keys_auth"
+    t.decimal  "latitude",                 precision: 15, scale: 10
+    t.decimal  "longitude",                precision: 15, scale: 10
+    t.index ["latitude", "longitude"], name: "index_residents_on_latitude_and_longitude", using: :btree
   end
 
   add_foreign_key "notifications", "events"
