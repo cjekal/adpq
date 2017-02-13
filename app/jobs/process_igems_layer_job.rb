@@ -5,9 +5,13 @@ class ProcessIgemsLayerJob < ApplicationJob
     endpoint = args[0]
     layer_id = args[1]
     query = args[2]
+    category = args[3]
 
-    # https://igems.doi.gov/arcgis/rest/services/igems_haz/MapServer/10/query?f=pjson&geometryType=esriGeometryEnvelope&geometry=-2.0037507842788246E7,-3.024097145838617E7,2.0037507842788246E7,3.0240971458386205E7&outFields=objectid
-    layer = Geoservice::MapService.new(:url => "#{endpoint}/#{layer_id}/query?#{query}")
-    puts layer
+    service = Geoservice::MapService.new(url: endpoint)
+    layer = service.query(layer_id, query)
+    raise 'could not load data' unless layer['error'].blank?
+    layer['features'].each do |feature|
+      ProcessIgemsFeatureJob.perform_later(feature, category, endpoint, layer_id)
+    end
   end
 end

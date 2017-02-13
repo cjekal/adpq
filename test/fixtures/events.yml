@@ -3,3 +3,5 @@
 valid_fire:
   category: Fire
   unique_identifier: 1234
+  endpoint: 'http://endpoint.com'
+  layer: 12
